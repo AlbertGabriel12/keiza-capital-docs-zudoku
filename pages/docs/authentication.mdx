@@ -1,0 +1,42 @@
+---
+title: Autenticação
+---
+
+## Autenticação
+
+A API da Keiza Capital oferece dois métodos de autenticação:
+
+- **Bearer Token JWT**  
+  Utilizado via header HTTP:  
+  `Authorization: Bearer SEU_TOKEN_JWT`
+
+- **API Key (x-api-key)**  
+  Utilizada via header HTTP:  
+  `x-api-key: SUA_API_KEY`
+
+### Endpoint com suporte a ambos os métodos
+
+O endpoint `payment/pix` aceita **Bearer JWT** e **x-api-key**.
+
+Para todos os demais endpoints, o único método aceito é **Bearer JWT**.
+
+> ⚠️ Atenção: ambos os métodos podem ser enviados no header da requisição. Não é permitido o uso de ambos simultaneamente. Escolha um dos métodos ao chamar o endpoint `payment/pix`.
+
+---
+
+## Tabela de Autenticação por Endpoint
+
+| Endpoint         | Bearer JWT | x-api-key |
+|------------------|------------|-----------|
+| `payment/pix`     | ✅        | ✅       |
+| Demais endpoints | ✅         | ❌       |
+
+---
+
+## Exemplos de uso
+
+### Usando Bearer JWT
+```http
+GET /auth/payment/pix HTTP/1.1
+Host: sandbox.keizacapital.com.br
+Authorization: Bearer SEU_TOKEN_JWT

@@ -1,0 +1,1167 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Keiza Capital Docs",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.keizacapital.com.br",
+      "description": "Sandbox"
+    },
+    {
+      "url": "https://api.keizacapital.com.br",
+      "description": "Produção"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Signup"
+    },
+    {
+      "name": "Login"
+    },
+    {
+      "name": "Password Recovery"
+    },
+    {
+      "name": "Payments Pix"
+    },
+    {
+      "name": "API Key"
+    },
+    {
+      "name": "Security IP"
+    },
+    {
+      "name": "Webhooks"
+    }
+  ],
+  "paths": {
+    "/account/signup/sendEmailValidateCode": {
+      "post": {
+        "summary": "Signup Step 1",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Signup"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Email code sended",
+            "headers": {}
+          },
+          "400": {
+            "description": "Email already exists",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/signup/validateCode": {
+      "post": {
+        "summary": "Signup Step 2",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Signup"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "email",
+                  "code"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Code validated",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid code",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/signup/createAccount": {
+      "post": {
+        "summary": "Signup Step 3",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Signup"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "emailToken": {
+                    "type": "integer"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "accountType": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "cep": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "number": {
+                        "type": "string"
+                      },
+                      "district": {
+                        "type": "string"
+                      },
+                      "complement": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "cep",
+                      "city",
+                      "state",
+                      "street",
+                      "number",
+                      "district"
+                    ]
+                  },
+                  "fullName": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "companyName": {
+                    "type": "string"
+                  },
+                  "companyStartDate": {
+                    "type": "string"
+                  },
+                  "acceptTerms": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password",
+                  "emailToken",
+                  "phone",
+                  "accountType",
+                  "address",
+                  "fullName",
+                  "cpf",
+                  "birthDate",
+                  "acceptTerms"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/login": {
+      "post": {
+        "summary": "Login Step 1",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Login"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "example",
+            "headers": {
+              "access-control-allow-origin": {
+                "example": "*",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "example": "true",
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "content-length": {
+                "example": "0",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Date": {
+                "example": "Sun, 23 Mar 2025 17:28:45 GMT",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Connection": {
+                "example": "keep-alive",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Keep-Alive": {
+                "example": "timeout=72",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/concludesLogin/{emailToken}": {
+      "post": {
+        "summary": "Login Step 2 (Token JWT)",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Login"
+        ],
+        "parameters": [
+          {
+            "name": "emailToken",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "example",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tokenJWT": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "access-control-allow-origin": {
+                "example": "*",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "example": "true",
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "content-type": {
+                "example": "application/json; charset=utf-8",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-length": {
+                "example": "287",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Date": {
+                "example": "Sun, 23 Mar 2025 17:29:01 GMT",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Connection": {
+                "example": "keep-alive",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Keep-Alive": {
+                "example": "timeout=72",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/forgotPassword/{email}": {
+      "post": {
+        "summary": "Forgot Password Step 1",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Password Recovery"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/account/forgotPasswordChangePassword/{email}": {
+      "post": {
+        "summary": "Forgot Password Step 2",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Password Recovery"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "emailToken": {
+                    "type": "integer"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "emailToken",
+                  "newPassword"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/payment/pix": {
+      "get": {
+        "summary": "Get All",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      },
+      "post": {
+        "summary": "Create",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "selfEarnedFees": {
+                    "type": "number"
+                  },
+                  "externalId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      }
+    },
+    "/auth/payment/pix/{id}": {
+      "get": {
+        "summary": "Get by id",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      }
+    },
+    "/auth/payment/pix/sandboxOnly/pay": {
+      "post": {
+        "summary": "sandboxOnly Pay",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      }
+    },
+    "/auth/payment/pix/earnedFeesBalance": {
+      "get": {
+        "summary": "Get earned fees balance",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      }
+    },
+    "/auth/payment/pix/withdrawEarnedFees": {
+      "post": {
+        "summary": "Withdraw earned fees",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "amount"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          { "BearerAuth": [] },
+          { "ApiKeyAuth": [] }
+        ]
+      }
+    },
+    "/payment/pix/{id}": {
+      "get": {
+        "summary": "Public GetByPaymentId",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/apiKey": {
+      "get": {
+        "summary": "Get",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "API Key"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/apiKey/createNewApiKey": {
+      "post": {
+        "summary": "Create new API KEY",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "API Key"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/apiKey/enable": {
+      "put": {
+        "summary": "Enable",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "API Key"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/apiKey/disable": {
+      "put": {
+        "summary": "Disable",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "API Key"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/securityIP": {
+      "get": {
+        "summary": "Get All",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Security IP"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Security IP"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ip": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ip"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/securityIP/{ip}": {
+      "delete": {
+        "summary": "Delete",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Security IP"
+        ],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "404": {
+            "description": "Not found",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/webhook": {
+      "get": {
+        "summary": "Get",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/webhook/create": {
+      "post": {
+        "summary": "Create",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/webhook/update": {
+      "put": {
+        "summary": "Update",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/webhook/delete/{id}": {
+      "delete": {
+        "summary": "Delete",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    }
+  }
+}
