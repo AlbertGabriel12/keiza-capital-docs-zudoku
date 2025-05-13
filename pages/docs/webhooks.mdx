@@ -1,0 +1,65 @@
+---
+title: Webhooks
+---
+
+Nossa API envia **webhooks** para informar mudanças importantes nos pagamentos via PIX. Abaixo estão os eventos atualmente disponíveis.
+
+---
+
+## Eventos disponíveis
+
+| Evento                                | Descrição                                                                 |
+|---------------------------------------|---------------------------------------------------------------------------|
+| `PIX_PAYMENT_AWAITING_FEE_CONFIRMATION` | O pagamento foi recebido, mas está aguardando confirmação de taxa.      |
+| `PIX_PAYMENT_PAID`                      | O pagamento foi confirmado com sucesso.                                 |
+
+---
+
+## Exemplo padrão de Payload
+```json
+{
+  "event": "string",
+  "createdAt": 1747133592363,
+  "data": {
+    any
+  }
+}
+```
+
+### Evento: `PIX_PAYMENT_AWAITING_FEE_CONFIRMATION`
+
+```json
+{
+  "event": "PIX_PAYMENT_AWAITING_FEE_CONFIRMATION",
+  "createdAt": 1747133592363,
+  "data": {
+    "id": "1a919bb7-2d37-4336-bb89-951e24b0a401",
+    "paymentId": "xIHGJcwfmZl8qWMj1UB",
+    "externalId": null,
+    "status": "AWAITING_FEE_CONFIRMATION",
+    "amount": 3,
+    "netAmount": 1,
+    "createdAt": "2025-05-13T10:51:48.547Z",
+    "updatedAt": "2025-05-13T10:53:12.211Z"
+  }
+}
+```
+
+### Evento: `PIX_PAYMENT_PAID`
+
+```json
+{
+  "event": "PIX_PAYMENT_AWAITING_FEE_CONFIRMATION",
+  "createdAt": 1747133592363,
+  "data": {
+    "id": "1a919bb7-2d37-4336-bb89-951e24b0a401",
+    "paymentId": "xIHGJcwfmZl8qWMj1UB",
+    "externalId": null,
+    "status": "PIX_PAYMENT_PAID",
+    "amount": 3,
+    "netAmount": 1,
+    "createdAt": "2025-05-13T10:51:48.547Z",
+    "updatedAt": "2025-05-13T10:53:12.211Z"
+  }
+}
+```

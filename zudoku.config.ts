@@ -14,7 +14,7 @@ const config: ZudokuConfig = {
       {
         type: "category",
         label: "Overview",
-        items: ["docs/introduction", "docs/authentication", "docs/example"],
+        items: ["docs/introduction", "docs/authentication", "docs/webhooks", "docs/smartContracts"],
       },
     ],
   },
