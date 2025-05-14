@@ -1,4 +1,6 @@
 import type { ZudokuConfig } from "zudoku";
+import { SwaggerPage } from "./src/swaggerPage"
+import { createElement } from "react";
 
 const config: ZudokuConfig = {
   page: {
@@ -8,6 +10,7 @@ const config: ZudokuConfig = {
   topNavigation: [
     { id: "docs", label: "Documentation" },
     { id: "api", label: "API Reference" },
+    { id: "swagger-api", label: "Swagger API Reference" },
   ],
   sidebar: {
     docs: [
@@ -18,6 +21,12 @@ const config: ZudokuConfig = {
       },
     ],
   },
+  customPages: [
+    {
+      path: "/swagger-api",
+      element: createElement(SwaggerPage)
+    }
+  ],
   redirects: [{ from: "/", to: "/docs/introduction" }],
   apis: {
     type: "file",
