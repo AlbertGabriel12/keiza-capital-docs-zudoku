@@ -17,6 +17,47 @@
         "in": "header",
         "name": "x-api-key"
       }
+    },
+    "schemas": {
+      "NotFoundError": {
+        "type": "object",
+        "required": [
+          "message",
+          "error",
+          "statusCode"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "string"
+          },
+          "error": {
+            "type": "string",
+            "example": "Not Found"
+          },
+          "statusCode": {
+            "type": "integer",
+            "example": 404
+          }
+        }
+      },
+      "InternalServerError": {
+        "type": "object",
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Internal server error"
+          },
+          "statusCode": {
+            "type": "integer",
+            "example": 500
+          }
+        }
+      }
     }
   },
   "servers": [
@@ -556,8 +597,110 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "headers": {},
+            "description": "Paginated list of payment records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "currentPage": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "pageSize": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "totalItems": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "totalPages": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "example": "44f7d15c-74af-4b66-9c42-bda90da1cda6"
+                          },
+                          "paymentId": {
+                            "type": "string",
+                            "nullable": true,
+                            "example": "knOcLvzsAm8OB6eBsX0"
+                          },
+                          "externalId": {
+                            "type": "string",
+                            "nullable": true,
+                            "example": "string"
+                          },
+                          "checkoutPaymentLink": {
+                            "type": "string",
+                            "nullable": true,
+                            "example": "https://example.com.br/test"
+                          },
+                          "callbackSuccessUrl": {
+                            "type": "string",
+                            "nullable": true,
+                            "example": "https://example.com.br/success"
+                          },
+                          "amount": {
+                            "type": "number",
+                            "example": 10
+                          },
+                          "netAmount": {
+                            "type": "number",
+                            "example": 9
+                          },
+                          "fees": {
+                            "type": "object",
+                            "properties": {
+                              "selfEarnedFee": {
+                                "type": "number",
+                                "nullable": true,
+                                "example": null
+                              },
+                              "infraFee": {
+                                "type": "number",
+                                "example": 1
+                              }
+                            }
+                          },
+                          "payload": {
+                            "type": "string",
+                            "example": "payload"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "PENDING",
+                              "PAID"
+                            ],
+                            "example": "PENDING"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-05-12T22:38:22.795Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-05-12T22:38:22.795Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "",
@@ -565,8 +708,12 @@
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       },
       "post": {
@@ -612,8 +759,12 @@
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -638,7 +789,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "headers": {}
           },
@@ -648,8 +799,12 @@
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -691,8 +846,12 @@
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -713,11 +872,25 @@
           "400": {
             "description": "",
             "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerError"
+                }
+              }
+            }
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -759,14 +932,18 @@
           }
         },
         "security": [
-          { "BearerAuth": [] },
-          { "ApiKeyAuth": [] }
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
-    "/payment/pix/{id}": {
+    "/payment/pix/{paymentId}": {
       "get": {
-        "summary": "Public GetByPaymentId",
+        "summary": "Public Get By PaymentID",
         "deprecated": false,
         "description": "",
         "tags": [
@@ -774,7 +951,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "paymentId",
             "in": "path",
             "description": "",
             "required": true,
@@ -789,9 +966,15 @@
             "description": "",
             "headers": {}
           },
-          "400": {
+          "404": {
             "description": "",
-            "headers": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
           }
         },
         "security": []
@@ -1036,9 +1219,7 @@
             "BearerAuth": []
           }
         ]
-      }
-    },
-    "/auth/webhook/create": {
+      },
       "post": {
         "summary": "Create",
         "deprecated": false,
@@ -1080,9 +1261,7 @@
             "BearerAuth": []
           }
         ]
-      }
-    },
-    "/auth/webhook/update": {
+      },
       "put": {
         "summary": "Update",
         "deprecated": false,
