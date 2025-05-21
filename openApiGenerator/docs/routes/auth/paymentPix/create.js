@@ -21,6 +21,12 @@ module.exports = {
                             },
                             "externalId": {
                                 "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "expirationDate": {
+                                "type": "string"
                             }
                         },
                         "required": [

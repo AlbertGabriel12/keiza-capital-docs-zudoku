@@ -19,6 +19,23 @@
       }
     },
     "schemas": {
+      "UnauthorizedError": {
+        "type": "object",
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Unauthorized"
+          },
+          "statusCode": {
+            "type": "integer",
+            "example": 401
+          }
+        }
+      },
       "NotFoundError": {
         "type": "object",
         "required": [
@@ -737,6 +754,12 @@
                     "type": "number"
                   },
                   "externalId": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "expirationDate": {
                     "type": "string"
                   }
                 },
