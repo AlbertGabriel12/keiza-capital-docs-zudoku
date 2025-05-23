@@ -109,6 +109,15 @@ module.exports = {
                                                 "type": "string",
                                                 "example": "payload"
                                             },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "example"
+                                            },
+                                            "dueDate": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-05-28T22:38:22.000Z"
+                                            },
                                             "status": {
                                                 "type": "string",
                                                 "enum": [
