@@ -25,7 +25,7 @@ module.exports = {
                             "description": {
                                 "type": "string"
                             },
-                            "expirationDate": {
+                            "dueDate": {
                                 "type": "string"
                             }
                         },
