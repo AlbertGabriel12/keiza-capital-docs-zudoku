@@ -26,7 +26,8 @@ module.exports = {
                                 "type": "string"
                             },
                             "dueDate": {
-                                "type": "string"
+                                "type": "string",
+                                "example": "2025-04-12"
                             }
                         },
                         "required": [

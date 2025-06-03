@@ -759,7 +759,7 @@
                   "description": {
                     "type": "string"
                   },
-                  "expirationDate": {
+                  "dueDate": {
                     "type": "string"
                   }
                 },
