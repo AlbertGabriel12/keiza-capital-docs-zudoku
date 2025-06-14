@@ -693,6 +693,15 @@
                             "type": "string",
                             "example": "payload"
                           },
+                          "description": {
+                            "type": "string",
+                            "example": "example"
+                          },
+                          "dueDate": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-05-28T22:38:22.000Z"
+                          },
                           "status": {
                             "type": "string",
                             "enum": [
@@ -760,7 +769,8 @@
                     "type": "string"
                   },
                   "dueDate": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2025-04-12"
                   }
                 },
                 "required": [
@@ -794,6 +804,46 @@
     "/auth/payment/pix/{id}": {
       "get": {
         "summary": "Get by id",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Payments Pix"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/payment/pix/{paymentId}": {
+      "get": {
+        "summary": "Get by payment ID",
         "deprecated": false,
         "description": "",
         "tags": [
