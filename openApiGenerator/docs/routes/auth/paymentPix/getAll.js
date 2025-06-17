@@ -11,7 +11,7 @@ module.exports = {
                 "name": "limit",
                 "in": "query",
                 "description": "",
-                "example": "10",
+                "example": "1",
                 "required": false,
                 "schema": {
                     "type": "integer",
