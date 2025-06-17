@@ -11,6 +11,7 @@ module.exports = {
                 "name": "limit",
                 "in": "query",
                 "description": "",
+                "example": "10",
                 "required": false,
                 "schema": {
                     "type": "integer",
@@ -22,6 +23,7 @@ module.exports = {
                 "name": "page",
                 "in": "query",
                 "description": "",
+                "example": "10",
                 "required": false,
                 "schema": {
                     "type": "integer"
