@@ -12,8 +12,10 @@ module.exports = {
         ...getAll,
         ...create,
     },
-    ...update,
-    ...getById,
+    "/auth/payment/pix/{id}": {
+        ...getById,
+        ...update,
+    },
     ...getByPaymentId,
     ...sandboxOnlyPay,
     ...getEarnedFeesBalance,
