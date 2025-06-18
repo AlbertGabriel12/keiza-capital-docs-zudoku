@@ -25,13 +25,13 @@ module.exports = {
                             "description": {
                                 "type": "string"
                             },
+                            "callbackSuccessUrl": {
+                                "type": "string",
+                                "example": "https://example.com.br/success"
+                            },
                             "dueDate": {
                                 "type": "string",
                                 "example": "2025-04-12"
-                            },
-                            "callbackSuccessUrl": {
-                                "type": "string",
-                                "example": "https://seudominio.com/sucesso"
                             }
                         },
                         "required": [
@@ -52,7 +52,7 @@ module.exports = {
                             "paymentId": "PkEgXNmbu33FzB5Nxah",
                             "externalId": "string",
                             "checkoutPaymentLink": "https://sandbox-keiza-capital.vercel.app/checkoutPix/1f70b77b-08bf-486b-a6ac-a18e1781f146",
-                            "callbackSuccessUrl": "https://seudominio.com/sucesso",
+                            "callbackSuccessUrl": "https://example.com.br/success",
                             "amount": 10,
                             "netAmount": 9,
                             "description": "string",
@@ -84,4 +84,4 @@ module.exports = {
         ]
     }
 }
-;
+    ;

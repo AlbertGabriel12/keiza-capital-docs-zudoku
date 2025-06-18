@@ -1,7 +1,7 @@
 module.exports = {
-    "/payment/pix/{paymentId}": {
+    "/payment/pix/{id}": {
         "get": {
-            "summary": "Public Get By PaymentID",
+            "summary": "Public Get By ID",
             "deprecated": false,
             "description": "",
             "tags": [
@@ -9,7 +9,7 @@ module.exports = {
             ],
             "parameters": [
                 {
-                    "name": "paymentId",
+                    "name": "id",
                     "in": "path",
                     "description": "",
                     "required": true,

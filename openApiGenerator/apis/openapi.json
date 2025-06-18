@@ -770,6 +770,10 @@
                   "description": {
                     "type": "string"
                   },
+                  "callbackSuccessUrl": {
+                    "type": "string",
+                    "example": "https://example.com.br/success"
+                  },
                   "dueDate": {
                     "type": "string",
                     "example": "2025-04-12"
@@ -785,8 +789,30 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "headers": {}
+            "description": "pagamento criado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "1f70b77b-08bf-486b-a6ac-a18e1781f146",
+                  "paymentId": "PkEgXNmbu33FzB5Nxah",
+                  "externalId": "string",
+                  "checkoutPaymentLink": "https://sandbox-keiza-capital.vercel.app/checkoutPix/1f70b77b-08bf-486b-a6ac-a18e1781f146",
+                  "callbackSuccessUrl": "https://example.com.br/success",
+                  "amount": 10,
+                  "netAmount": 9,
+                  "description": "string",
+                  "dueDate": null,
+                  "fees": {
+                    "selfEarnedFee": null,
+                    "infraFee": 1
+                  },
+                  "payload": "00020126580014br.gov.bcb.pix01366e49949c-424b-4ba7-8734-d4f1fd2dc272520400005303986540510.005802BR5917Brla Digital Ltda6009Sao Paulo6229052500004LPkEgXNmbu33FzB5Nxah6304EF57",
+                  "status": "PENDING",
+                  "createdAt": "2025-06-16T23:23:46.136Z",
+                  "updatedAt": "2025-06-16T23:23:46.136Z"
+                }
+              }
+            }
           },
           "400": {
             "description": "",
@@ -804,44 +830,6 @@
       }
     },
     "/auth/payment/pix/{id}": {
-      "get": {
-        "summary": "Get by id",
-        "deprecated": false,
-        "description": "",
-        "tags": [
-          "Payments Pix"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "example": "ed3be0b7-23ce-4c26-8773-28d4cec62472",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          },
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      },
       "put": {
         "summary": "Update",
         "deprecated": false,
@@ -885,14 +873,13 @@
                   },
                   "callbackSuccessUrl": {
                     "type": "string",
-                    "example": "http://www.keizacapital.com.br"
+                    "example": "https://example.com.br/success"
                   },
                   "dueDate": {
                     "type": "string",
                     "example": "2025-04-12"
                   }
-                },
-                "required": []
+                }
               },
               "examples": {}
             }
@@ -916,11 +903,9 @@
             "ApiKeyAuth": []
           }
         ]
-      }
-    },
-    "/auth/payment/pix/{paymentId}": {
+      },
       "get": {
-        "summary": "Get by payment ID",
+        "summary": "Get by id",
         "deprecated": false,
         "description": "",
         "tags": [
@@ -932,7 +917,7 @@
             "in": "path",
             "description": "",
             "required": true,
-            "example": "",
+            "example": "ed3be0b7-23ce-4c26-8773-28d4cec62472",
             "schema": {
               "type": "string"
             }
@@ -1091,9 +1076,9 @@
         ]
       }
     },
-    "/payment/pix/{paymentId}": {
+    "/payment/pix/{id}": {
       "get": {
-        "summary": "Public Get By PaymentID",
+        "summary": "Public Get By ID",
         "deprecated": false,
         "description": "",
         "tags": [
@@ -1101,7 +1086,7 @@
         ],
         "parameters": [
           {
-            "name": "paymentId",
+            "name": "id",
             "in": "path",
             "description": "",
             "required": true,

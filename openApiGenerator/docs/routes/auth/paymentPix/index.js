@@ -4,7 +4,6 @@ const create = require("./create");
 const sandboxOnlyPay = require("./sandboxOnlyPay");
 const getEarnedFeesBalance = require("./earnedSelfFees/getEarnedFeesBalance");
 const withdrawEarnedFees = require("./earnedSelfFees/withdrawEarnedFees");
-const getByPaymentId = require("./getByPaymentId");
 const update = require("./update");
 
 module.exports = {
@@ -13,10 +12,9 @@ module.exports = {
         ...create,
     },
     "/auth/payment/pix/{id}": {
-        ...getById,
         ...update,
+        ...getById,
     },
-    ...getByPaymentId,
     ...sandboxOnlyPay,
     ...getEarnedFeesBalance,
     ...withdrawEarnedFees

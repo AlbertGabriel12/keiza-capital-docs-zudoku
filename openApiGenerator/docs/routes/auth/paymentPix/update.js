@@ -42,14 +42,13 @@ module.exports = {
                             },
                             "callbackSuccessUrl": {
                                 "type": "string",
-                                "example": "http://www.keizacapital.com.br"
+                                "example": "https://example.com.br/success"
                             },
                             "dueDate": {
                                 "type": "string",
                                 "example": "2025-04-12"
                             }
-                        },
-                        "required": []
+                        }
                     },
                     "examples": {}
                 }
